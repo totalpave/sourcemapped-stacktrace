@@ -12,10 +12,11 @@
 
 // note we only include source-map-consumer, not the whole source-map library,
 // which includes gear for generating source maps that we don't need
-define(['source-map/lib/source-map-consumer'],
-function(source_map_consumer) {
+define(['source-map/lib/source-map-consumer', 'bowser'],
+function(source_map_consumer. bowser) {
 
   var global_mapForUri = {};
+  var browser = bowser.getParser(navigator.userAgent);
 
   /**
    * Re-map entries in a stacktrace using sourcemaps if available.
@@ -43,7 +44,8 @@ function(source_map_consumer) {
 
     var fetcher = new Fetcher(opts);
 
-    if (isChromeOrEdge() || isIE11Plus()) {
+    // if (isChromeOrEdge() || isIE11Plus()) {
+    if (isChrome() || isEdge() || isIE11Plus()) {
       regex = /^ +at.+\((.*):([0-9]+):([0-9]+)/;
       expected_fields = 4;
       // (skip first line containing exception message)
@@ -78,22 +80,41 @@ function(source_map_consumer) {
     });
   };
 
-  var isChromeOrEdge = function() {
-    return navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-  };
+  var isSafari = function() {
+    return browser.getBrowserName() === 'safari';
+  }
+  // var isSafari = function() {
+  //   return navigator.userAgent.toLowerCase().indexOf('safari') > -1;
+  // };
 
   var isFirefox = function() {
-    return navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
-  };  
+    return browser.getBrowserName() === 'firefox';
+  }
+  // var isFirefox = function() {
+  //   return navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+  // };  
 
-  var isSafari = function() {
-    return navigator.userAgent.toLowerCase().indexOf('safari') > -1;
-  };
-		
+  var isChrome = function() {
+    return browser.getBrowserName() === 'chrome';
+  }
+
+  var isEdge = function() {
+    return browser.getBrowserName() === 'msedge';
+  }
+  // var isChromeOrEdge = function() {
+  //   return navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+  // };
+
   var isIE11Plus = function() {
-   	return document.documentMode && document.documentMode >= 11;
-  };
-
+    var v = browser.getBrowserVersion();
+    if(!v) {
+      v = '0.0.0';
+    }
+    return browser.getBrowserName() === 'msie' && v.toString().split('.')[0];
+  }
+  // var isIE11Plus = function() {
+  //  	return document.documentMode && document.documentMode >= 11;
+  // };
 
   var Semaphore = function() {
     this.count = 0;
@@ -233,7 +254,8 @@ function(source_map_consumer) {
   };
 
   function origName(origLine) {
-    var match = String(origLine).match((isChromeOrEdge() || isIE11Plus()) ?
+    // var match = String(origLine).match((isChromeOrEdge() || isIE11Plus()) ?
+    var match = String(origLine).match((isChrome() || isEdge() || isIE11Plus()) ?
       / +at +([^ ]*).*/ :
       /([^@]*)@.*/);
     return match && match[1];
