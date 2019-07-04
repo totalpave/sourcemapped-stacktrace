@@ -1,7 +1,7 @@
 {
   "name": "sourcemapped-stacktrace",
   "version": "1.1.9",
-  "homepage": "https://github.com/novocaine/sourcemapped-stacktrace",
+  "homepage": "https://github.com/totalpave/sourcemapped-stacktrace",
   "license": "BSD-3-Clause",
   "author": {
     "name": "James Salter",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/novocaine/sourcemapped-stacktrace"
+    "url": "http://github.com/totalpave/sourcemapped-stacktrace"
   },
   "scripts": {
     "prepublish": "webpack"
