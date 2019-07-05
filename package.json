@@ -22,6 +22,7 @@
     "url": "http://github.com/totalpave/sourcemapped-stacktrace"
   },
   "scripts": {
+    "build": "./node_modules/webpack/bin/webpack.js --env=prod --mode production --progress",
     "prepublish": "webpack"
   }
 }
