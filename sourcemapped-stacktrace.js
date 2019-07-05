@@ -81,25 +81,25 @@ function(source_map_consumer, bowser) {
   };
 
   var isSafari = function() {
-    return browser.getBrowserName() === 'safari';
+    return browser.getBrowserName().toLowerCase() === 'safari';
   }
   // var isSafari = function() {
   //   return navigator.userAgent.toLowerCase().indexOf('safari') > -1;
   // };
 
   var isFirefox = function() {
-    return browser.getBrowserName() === 'firefox';
+    return browser.getBrowserName().toLowerCase() === 'firefox';
   }
   // var isFirefox = function() {
   //   return navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
   // };  
 
   var isChrome = function() {
-    return browser.getBrowserName() === 'chrome';
+    return browser.getBrowserName().toLowerCase() === 'chrome';
   }
 
   var isEdge = function() {
-    return browser.getBrowserName() === 'msedge';
+    return browser.getBrowserName().toLowerCase() === 'msedge';
   }
   // var isChromeOrEdge = function() {
   //   return navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
@@ -110,7 +110,7 @@ function(source_map_consumer, bowser) {
     if(!v) {
       v = '0.0.0';
     }
-    return browser.getBrowserName() === 'msie' && v.toString().split('.')[0];
+    return browser.getBrowserName().toLowerCase() === 'msie' && v.toString().split('.')[0];
   }
   // var isIE11Plus = function() {
   //  	return document.documentMode && document.documentMode >= 11;
