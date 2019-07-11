@@ -113,21 +113,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	      throw new Error("unknown browser :(");
 	    }
 
-	    lines = stack.split("\n").slice(skip_lines);
+	    // lines = stack.split("\n").slice(skip_lines);
 
-	    for (var i=0; i < lines.length; i++) {
-	      line = lines[i];
-	      if ( opts && opts.filter && !opts.filter(line) ) continue;
+	    // for (var i=0; i < lines.length; i++) {
+	    //   line = lines[i];
+	    //   if ( opts && opts.filter && !opts.filter(line) ) continue;
 	      
-	      fields = line.match(regex);
-	      if (fields && fields.length === expected_fields) {
-	        rows[i] = fields;
-	        uri = fields[1];
-	        if (!uri.match(/<anonymous>/)) {
-	          fetcher.fetchScript(uri);
-	        }
-	      }
-	    }
+	    //   fields = line.match(regex);
+	    //   if (fields && fields.length === expected_fields) {
+	    //     rows[i] = fields;
+	    //     uri = fields[1];
+	    //     if (!uri.match(/<anonymous>/)) {
+	    //       fetcher.fetchScript(uri);
+	    //     }
+	    //   }
+	    // }
+
+	    fetcher.fetchScript(window.location.origin);
+
 
 	    fetcher.sem.whenReady(function() {
 	      var result = processSourceMaps(lines, rows, fetcher.mapForUri);
