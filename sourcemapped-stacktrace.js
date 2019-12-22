@@ -13,8 +13,8 @@
 // note we only include source-map-consumer, not the whole source-map library,
 // which includes gear for generating source maps that we don't need
 define(['source-map/lib/source-map-consumer', '@totalpave/bowser'],
-function(source_map_consumer, bowser) {
-
+function(source_map_consumer, bowserPackage) {
+  var bowser = bowserPackage.Browser;
   var global_mapForUri = {};
   var browser = bowser.getParser(navigator.userAgent);
 
