@@ -14,7 +14,7 @@
 // which includes gear for generating source maps that we don't need
 define(['source-map/lib/source-map-consumer', '@totalpave/bowser'],
 function(source_map_consumer, bowserPackage) {
-  var bowser = bowserPackage.Browser;
+  var bowser = bowserPackage.Bowser;
   var global_mapForUri = {};
   var browser = bowser.getParser(navigator.userAgent);
 
