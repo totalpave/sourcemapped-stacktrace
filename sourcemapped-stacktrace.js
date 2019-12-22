@@ -12,7 +12,7 @@
 
 // note we only include source-map-consumer, not the whole source-map library,
 // which includes gear for generating source maps that we don't need
-define(['source-map/lib/source-map-consumer', 'bowser'],
+define(['source-map/lib/source-map-consumer', '@totalpave/bowser'],
 function(source_map_consumer, bowser) {
 
   var global_mapForUri = {};
